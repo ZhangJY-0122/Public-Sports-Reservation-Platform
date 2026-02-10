@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预约页面 - 朋友选择功能演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .booking-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .demo-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+        }
+        
+        .demo-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .demo-subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .demo-toggle {
+            margin-top: 15px;
+        }
+        
+        .toggle-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .page-content {
+            display: none;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        
+        .back-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .header-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .calendar-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .calendar-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        /* 场馆信息卡片 */
+        .venue-info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.6s ease;
+        }
+        
+        .venue-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 30px;
+        }
+        
+        .venue-icon {
+            font-size: 40px;
+        }
+        
+        .venue-details {
+            flex: 1;
+        }
+        
+        .venue-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .venue-type {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        
+        .venue-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .rating-stars {
+            font-size: 20px;
+        }
+        
+        .rating-score {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff9500;
+        }
+        
+        .review-count {
+            font-size: 20px;
+            color: #999;
+        }
+        
+        .venue-price {
+            display: flex;
+            align-items: baseline;
+            color: #ff6b6b;
+        }
+        
+        .price-unit {
+            font-size: 24px;
+        }
+        
+        .price-amount {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        /* 区域标题 */
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+            animation: slideUp 0.6s ease;
+        }
+        
+        .section-subtitle {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 16px;
+            display: block;
+            animation: slideUp 0.6s ease;
+        }
+        
+        /* 时间选择区域 */
+        .time-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.6s ease 0.1s both;
+        }
+        
+        .date-selector,
+        .time-selector {
+            margin-bottom: 24px;
+        }
+        
+        .selector-label {
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .picker-display {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .picker-display:hover {
+            background: #e9ecef;
+            border-color: #007AFF;
+        }
+        
+        .picker-text {
+            font-size: 28px;
+            color: #333;
+        }
+        
+        .picker-arrow {
+            font-size: 20px;
+            color: #666;
+        }
+        
+        /* 费用计算区域 */
+        .cost-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.6s ease 0.2s both;
+        }
+        
+        .cost-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .cost-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .cost-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .cost-label {
+            font-size: 26px;
+            color: #666;
+        }
+        
+        .cost-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .cost-value.highlight {
+            color: #007AFF;
+        }
+        
+        .sharer-counter {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .counter-btn {
+            width: 48px;
+            height: 48px;
+            background: #007AFF;
+            color: white;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .counter-btn:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+        }
+        
+        .counter-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .counter-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        /* 费用分摊开关 */
+        .sharing-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.6s ease 0.3s both;
+        }
+        
+        .sharing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .toggle-label {
+            font-size: 26px;
+            color: #333;
+        }
+        
+        .sharing-switch {
+            width: 50px;
+            height: 30px;
+            background: #ccc;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .sharing-switch.active {
+            background: #007AFF;
+        }
+        
+        .sharing-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .sharing-switch.active::after {
+            transform: translateX(20px);
+        }
+        
+        .sharing-tip {
+            font-size: 22px;
+            color: #666;
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* 朋友选择列表区域 */
+        .friends-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.6s ease 0.4s both;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .friends-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .friend-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .friend-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .friend-item.selected {
+            background: #e3f2fd;
+            border-color: #007AFF;
+            transform: translateX(5px);
+        }
+        
+        .friend-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .friend-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        
+        .friend-emoji {
+            font-size: 28px;
+        }
+        
+        .friend-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .friend-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .friend-status {
+            font-size: 22px;
+            color: #666;
+        }
+        
+        .friend-select {
+            width: 40px;
+            height: 40px;
+            background: #007AFF;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .friend-item.selected .friend-select {
+            opacity: 1;
+        }
+        
+        .select-icon {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* 备注区域 */
+        .notes-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 120px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.6s ease 0.5s both;
+        }
+        
+        .notes-input {
+            width: 100%;
+            height: 160px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 26px;
+            color: #333;
+            border: 2px solid #e9ecef;
+            resize: none;
+            font-family: inherit;
+        }
+        
+        .notes-input:focus {
+            outline: none;
+            border-color: #007AFF;
+        }
+        
+        .notes-counter {
+            text-align: right;
+            margin-top: 8px;
+        }
+        
+        .counter-text {
+            font-size: 20px;
+            color: #999;
+        }
+        
+        /* 预约确认区域 */
+        .confirm-section {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            animation: slideUp 0.6s ease 0.6s both;
+        }
+        
+        .price-summary {
+            flex: 1;
+        }
+        
+        .summary-label {
+            font-size: 26px;
+            color: #666;
+        }
+        
+        .summary-amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+        
+        .confirm-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50px;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .confirm-btn:disabled,
+        .confirm-btn.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* 动画 */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* 功能提示 */
+        .feature-tips {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .tips-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tips-list {
+            list-style: none;
+        }
+        
+        .tips-list li {
+            font-size: 16px;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .tips-list li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <!-- 演示控制面板 -->
+        <div class="demo-header">
+            <div class="demo-title">🎯 朋友选择功能演示</div>
+            <div class="demo-subtitle">点击下方按钮体验新功能</div>
+            <div class="demo-toggle">
+                <button class="toggle-btn" onclick="showPage()">🚀 开始体验</button>
+            </div>
+        </div>
+
+        <!-- 页面内容 -->
+        <div class="page-content" id="pageContent">
+            <!-- 功能说明 -->
+            <div class="feature-tips">
+                <div class="tips-title">🆕 新增功能亮点</div>
+                <ul class="tips-list">
+                    <li>开启费用分摊后显示朋友列表</li>
+                    <li>选择朋友数量与分摊人数保持一致</li>
+                    <li>支持点击切换选择状态</li>
+                    <li>实时显示已选择进度</li>
+                    <li>智能验证确保数据完整性</li>
+                </ul>
+            </div>
+
+            <!-- 顶部导航栏 -->
+            <view class="header">
+                <view class="back-btn" onclick="goBack()">←</view>
+                <text class="header-title">🏟️ 预约场馆</text>
+                <view class="calendar-btn">📅</view>
+            </view>
+
+            <!-- 场馆信息卡片 -->
+            <view class="venue-info-card">
+                <view class="venue-avatar">
+                    <text class="venue-icon">🏀</text>
+                </view>
+                <view class="venue-details">
+                    <text class="venue-name">🏀 阳光体育中心</text>
+                    <text class="venue-type">篮球场 · 室内场地</text>
+                    <view class="venue-rating">
+                        <text class="rating-stars">⭐⭐⭐⭐⭐</text>
+                        <text class="rating-score">4.8</text>
+                        <text class="review-count">(128条评价)</text>
+                    </view>
+                </view>
+                <view class="venue-price">
+                    <text class="price-unit">¥</text>
+                    <text class="price-amount">80</text>
+                    <text class="price-unit">/小时</text>
+                </view>
+            </view>
+
+            <!-- 时间选择区域 -->
+            <view class="time-section">
+                <text class="section-title">⏰ 选择时间</text>
+                
+                <view class="date-selector">
+                    <text class="selector-label">📅 预约日期</text>
+                    <view class="picker-display" onclick="selectDate()">
+                        <text class="picker-text">2024-01-15</text>
+                        <text class="picker-arrow">▼</text>
+                    </view>
+                </view>
+
+                <view class="time-selector">
+                    <text class="selector-label">🕐 开始时间</text>
+                    <view class="picker-display" onclick="selectTime('start')">
+                        <text class="picker-text">09:00</text>
+                        <text class="picker-arrow">▼</text>
+                    </view>
+                </view>
+
+                <view class="time-selector">
+                    <text class="selector-label">🕐 结束时间</text>
+                    <view class="picker-display" onclick="selectTime('end')">
+                        <text class="picker-text">11:00</text>
+                        <text class="picker-arrow">▼</text>
+                    </view>
+                </view>
+            </view>
+
+            <!-- 费用计算区域 -->
+            <view class="cost-section">
+                <text class="section-title">💰 费用详情</text>
+                
+                <view class="cost-detail">
+                    <view class="cost-item">
+                        <text class="cost-label">💵 时长费用</text>
+                        <text class="cost-value">160元</text>
+                    </view>
+                    
+                    <view class="cost-item">
+                        <text class="cost-label">📊 分摊人数</text>
+                        <view class="sharer-counter">
+                            <view class="counter-btn" onclick="decreaseSharers()">-</view>
+                            <text class="counter-value" id="sharerCount">2</text>
+                            <view class="counter-btn" onclick="increaseSharers()">+</view>
+                        </view>
+                    </view>
+                    
+                    <view class="cost-item">
+                        <text class="cost-label">💝 优惠折扣</text>
+                        <text class="cost-value">-0元</text>
+                    </view>
+                    
+                    <view class="cost-item">
+                        <text class="cost-label">💸 每人费用</text>
+                        <text class="cost-value highlight" id="perPersonCost">80</text>
+                    </view>
+                </view>
+            </view>
+
+            <!-- 费用分摊开关 -->
+            <view class="sharing-section">
+                <text class="section-title">🤝 费用分摊</text>
+                
+                <view class="sharing-toggle">
+                    <text class="toggle-label">🔄 开启费用分摊</text>
+                    <view class="sharing-switch active" id="sharingSwitch" onclick="toggleSharing()"></view>
+                </view>
+                
+                <view class="sharing-tip" id="sharingTip">
+                    💡 已开启费用分摊，请选择 <span id="requiredCount">2</span> 位朋友
+                </view>
+            </view>
+
+            <!-- 朋友选择列表 -->
+            <view class="friends-section" id="friendsSection">
+                <text class="section-title">👥 选择朋友</text>
+                <text class="section-subtitle">已选择 <span id="selectedCount">0</span>/<span id="totalRequired">2</span> 位朋友</text>
+                
+                <view class="friends-list">
+                    <div class="friend-item" onclick="toggleFriend(1)">
+                        <view class="friend-avatar">
+                            <text class="friend-emoji">👦</text>
+                        </view>
+                        <view class="friend-info">
+                            <text class="friend-name">小明</text>
+                            <text class="friend-status">在线</text>
+                        </view>
+                        <view class="friend-select">
+                            <text class="select-icon">✓</text>
+                        </view>
+                    </div>
+                    
+                    <div class="friend-item" onclick="toggleFriend(2)">
+                        <view class="friend-avatar">
+                            <text class="friend-emoji">👧</text>
+                        </view>
+                        <view class="friend-info">
+                            <text class="friend-name">小红</text>
+                            <text class="friend-status">在线</text>
+                        </view>
+                        <view class="friend-select">
+                            <text class="select-icon">✓</text>
+                        </view>
+                    </div>
+                    
+                    <div class="friend-item" onclick="toggleFriend(3)">
+                        <view class="friend-avatar">
+                            <text class="friend-emoji">👨</text>
+                        </view>
+                        <view class="friend-info">
+                            <text class="friend-name">小李</text>
+                            <text class="friend-status">忙碌</text>
+                        </view>
+                        <view class="friend-select">
+                            <text class="select-icon">✓</text>
+                        </view>
+                    </div>
+                    
+                    <div class="friend-item" onclick="toggleFriend(4)">
+                        <view class="friend-avatar">
+                            <text class="friend-emoji">👩</text>
+                        </view>
+                        <view class="friend-info">
+                            <text class="friend-name">小王</text>
+                            <text class="friend-status">在线</text>
+                        </view>
+                        <view class="friend-select">
+                            <text class="select-icon">✓</text>
+                        </view>
+                    </div>
+                    
+                    <div class="friend-item disabled">
+                        <view class="friend-avatar">
+                            <text class="friend-emoji">🧑</text>
+                        </view>
+                        <view class="friend-info">
+                            <text class="friend-name">小张</text>
+                            <text class="friend-status">离线</text>
+                        </view>
+                        <view class="friend-select">
+                            <text class="select-icon">✓</text>
+                        </view>
+                    </div>
+                </view>
+            </view>
+
+            <!-- 备注区域 -->
+            <view class="notes-section">
+                <text class="section-title">📝 预约备注</text>
+                <textarea class="notes-input" placeholder="请输入备注信息（可选）" maxlength="100"></textarea>
+                <view class="notes-counter">
+                    <text class="counter-text">0/100</text>
+                </view>
+            </view>
+
+            <!-- 预约确认区域 -->
+            <view class="confirm-section">
+                <view class="price-summary">
+                    <text class="summary-label">合计费用</text>
+                    <text class="summary-amount">¥80</text>
+                </view>
+                <button class="confirm-btn" id="confirmBtn" onclick="confirmBooking()">
+                    <text class="btn-text">确认预约</text>
+                </button>
+            </view>
+        </div>
+    </div>
+
+    <script>
+        // 演示状态
+        let isSharing = true;
+        let sharerCount = 2;
+        let selectedFriends = [];
+        const friends = [1, 2, 3, 4]; // 可选择的朋友ID
+        
+        function showPage() {
+            document.getElementById('pageContent').classList.add('active');
+            document.querySelector('.demo-header').style.display = 'none';
+        }
+        
+        function goBack() {
+            document.getElementById('pageContent').classList.remove('active');
+            document.querySelector('.demo-header').style.display = 'block';
+            resetDemo();
+        }
+        
+        function selectDate() {
+            alert('日期选择功能演示');
+        }
+        
+        function selectTime(type) {
+            alert(`${type === 'start' ? '开始' : '结束'}时间选择功能演示`);
+        }
+        
+        function decreaseSharers() {
+            if (sharerCount > 2) {
+                sharerCount--;
+                updateSharerCount();
+                updateSelectedFriends();
+                updateUI();
+            }
+        }
+        
+        function increaseSharers() {
+            if (sharerCount < 10) {
+                sharerCount++;
+                updateSharerCount();
+                updateSelectedFriends();
+                updateUI();
+            }
+        }
+        
+        function toggleSharing() {
+            isSharing = !isSharing;
+            const switchElement = document.getElementById('sharingSwitch');
+            const tipElement = document.getElementById('sharingTip');
+            const friendsSection = document.getElementById('friendsSection');
+            
+            if (isSharing) {
+                switchElement.classList.add('active');
+                tipElement.style.display = 'block';
+                friendsSection.style.display = 'block';
+            } else {
+                switchElement.classList.remove('active');
+                tipElement.style.display = 'none';
+                friendsSection.style.display = 'none';
+                selectedFriends = [];
+                updateSelectedFriends();
+            }
+            updateUI();
+        }
+        
+        function toggleFriend(friendId) {
+            if (!isSharing) return;
+            
+            const index = selectedFriends.indexOf(friendId);
+            
+            if (index > -1) {
+                // 取消选择
+                selectedFriends.splice(index, 1);
+            } else {
+                // 添加选择，但不超过分摊人数
+                if (selectedFriends.length < sharerCount) {
+                    selectedFriends.push(friendId);
+                } else {
+                    alert(`最多只能选择${sharerCount}位朋友`);
+                    return;
+                }
+            }
+            
+            updateSelectedFriends();
+            updateUI();
+        }
+        
+        function updateSharerCount() {
+            document.getElementById('sharerCount').textContent = sharerCount;
+            document.getElementById('requiredCount').textContent = sharerCount;
+            document.getElementById('totalRequired').textContent = sharerCount;
+        }
+        
+        function updateSelectedFriends() {
+            document.getElementById('selectedCount').textContent = selectedFriends.length;
+        }
+        
+        function updateUI() {
+            // 更新朋友项的选中状态
+            const friendItems = document.querySelectorAll('.friend-item');
+            friendItems.forEach((item, index) => {
+                const friendId = friends[index];
+                if (friendId && selectedFriends.includes(friendId)) {
+                    item.classList.add('selected');
+                } else {
+                    item.classList.remove('selected');
+                }
+                
+                // 如果已达到选择上限，禁用其他朋友项
+                if (selectedFriends.length >= sharerCount && !selectedFriends.includes(friendId)) {
+                    item.style.opacity = '0.5';
+                    item.style.pointerEvents = 'none';
+                } else {
+                    item.style.opacity = '1';
+                    item.style.pointerEvents = 'auto';
+                }
+            });
+            
+            // 更新确认按钮状态
+            const confirmBtn = document.getElementById('confirmBtn');
+            const canConfirm = selectedFriends.length === sharerCount;
+            
+            if (canConfirm) {
+                confirmBtn.classList.remove('disabled');
+                confirmBtn.disabled = false;
+            } else {
+                confirmBtn.classList.add('disabled');
+                confirmBtn.disabled = true;
+            }
+            
+            // 更新费用计算
+            const perPersonCost = 80; // 基础费用
+            document.getElementById('perPersonCost').textContent = perPersonCost;
+            document.querySelector('.summary-amount').textContent = `¥${perPersonCost}`;
+        }
+        
+        function confirmBooking() {
+            if (isSharing && selectedFriends.length !== sharerCount) {
+                alert(`请选择${sharerCount}位朋友`);
+                return;
+            }
+            
+            const message = `预约信息：
+日期：2024-01-15
+时间：09:00 - 11:00
+${isSharing ? `分摊人数：${sharerCount}\n选择的朋友：${selectedFriends.length}位` : '不参与分摊'}
+每人费用：¥80`;
+            
+            alert(message);
+        }
+        
+        function resetDemo() {
+            isSharing = true;
+            sharerCount = 2;
+            selectedFriends = [];
+            updateSharerCount();
+            updateSelectedFriends();
+            updateUI();
+        }
+        
+        // 初始化
+        updateSharerCount();
+        updateSelectedFriends();
+        updateUI();
+    </script>
+</body>
+</html>

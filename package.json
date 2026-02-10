@@ -1,0 +1,39 @@
+{
+  "name": "new_trae_uniapp",
+  "version": "1.0.0",
+  "description": "体育预约系统 - uni-app前端",
+  "main": "main.js",
+  "scripts": {
+    "serve": "npm run dev:h5",
+    "build": "npm run build:h5",
+    "dev:h5": "cross-env NODE_ENV=development UNI_PLATFORM=h5 uni serve",
+    "dev:mp-weixin": "cross-env NODE_ENV=development UNI_PLATFORM=mp-weixin uni serve --platform mp-weixin",
+    "dev:app": "cross-env NODE_ENV=development UNI_PLATFORM=app uni serve --platform app",
+    "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 uni build",
+    "build:app": "cross-env NODE_ENV=production UNI_PLATFORM=app uni build --platform app"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "@dcloudio/uni-app": "2.0.2",
+    "@dcloudio/uni-h5": "2.0.2",
+    "@dcloudio/uni-helper-json": "*",
+    "uni-icons": "^2.0.2"
+  },
+  "devDependencies": {
+    "@dcloudio/types": "^2.5.8",
+    "@dcloudio/uni-automator": "^2.0.2",
+    "@dcloudio/uni-cli": "^2.0.2",
+    "@dcloudio/uni-cli-shared": "^2.0.2",
+    "@dcloudio/uni-migration": "^2.0.2",
+    "@dcloudio/uni-template-compiler": "^2.0.2",
+    "@babel/plugin-syntax-jsx": "^7.17.12",
+    "@babel/core": "^7.12.9",
+    "cross-env": "^7.0.2",
+    "mini-types": "^1.0.0",
+    "miniprogram-api-typings": "^3.0.0"
+  },
+  "uni-app": {
+    "scripts": {}
+  }
+}

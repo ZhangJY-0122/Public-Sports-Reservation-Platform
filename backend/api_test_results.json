@@ -1,0 +1,136 @@
+[
+  {
+    "test": "健康检查",
+    "status": "PASS",
+    "message": "服务运行正常",
+    "timestamp": "2025-11-16T20:04:50.743539",
+    "response_data": null
+  },
+  {
+    "test": "首页接口",
+    "status": "PASS",
+    "message": "API服务信息获取成功",
+    "timestamp": "2025-11-16T20:04:50.750534",
+    "response_data": {
+      "docs": "/api/docs/",
+      "endpoints": {
+        "auth": "/api/auth/",
+        "booking": "/api/booking/",
+        "user": "/api/user/",
+        "venue": "/api/venue/"
+      },
+      "message": "体育预约系统API服务",
+      "status": "running",
+      "version": "1.0"
+    }
+  },
+  {
+    "test": "系统信息",
+    "status": "PASS",
+    "message": "系统信息获取成功",
+    "timestamp": "2025-11-16T20:04:50.756535",
+    "response_data": {
+      "code": 0,
+      "data": {
+        "api": {
+          "status": "running",
+          "version": "1.0"
+        },
+        "database": {
+          "connected": true,
+          "type": "SQLAlchemy"
+        },
+        "system": {
+          "framework": "Flask",
+          "platform": "Windows-10-10.0.19045-SP0",
+          "python_version": "3.11.7 | packaged by Anaconda, Inc. | (main, Dec 15 2023, 18:05:47) [MSC v.1916 64 bit (AMD64)]"
+        }
+      },
+      "message": "获取成功"
+    }
+  },
+  {
+    "test": "用户注册",
+    "status": "PASS",
+    "message": "注册成功，用户ID: 14",
+    "timestamp": "2025-11-16T20:04:51.454257",
+    "response_data": null
+  },
+  {
+    "test": "重复注册检查",
+    "status": "PASS",
+    "message": "正确阻止重复注册",
+    "timestamp": "2025-11-16T20:04:51.461257",
+    "response_data": null
+  },
+  {
+    "test": "用户登录",
+    "status": "PASS",
+    "message": "登录成功",
+    "timestamp": "2025-11-16T20:04:52.162484",
+    "response_data": null
+  },
+  {
+    "test": "管理员登录",
+    "status": "PASS",
+    "message": "管理员登录成功，ID: 1",
+    "timestamp": "2025-11-16T20:04:52.869133",
+    "response_data": null
+  },
+  {
+    "test": "获取场馆分类",
+    "status": "PASS",
+    "message": "获取到 72 个分类",
+    "timestamp": "2025-11-16T20:04:52.878133",
+    "response_data": null
+  },
+  {
+    "test": "获取场馆列表",
+    "status": "PASS",
+    "message": "获取到 20 个场馆",
+    "timestamp": "2025-11-16T20:04:52.892135",
+    "response_data": null
+  },
+  {
+    "test": "场馆搜索",
+    "status": "PASS",
+    "message": "搜索功能正常",
+    "timestamp": "2025-11-16T20:04:52.903134",
+    "response_data": null
+  },
+  {
+    "test": "获取用户信息",
+    "status": "PASS",
+    "message": "用户信息获取成功",
+    "timestamp": "2025-11-16T20:04:52.908131",
+    "response_data": null
+  },
+  {
+    "test": "获取用户仪表板",
+    "status": "PASS",
+    "message": "仪表板数据获取成功",
+    "timestamp": "2025-11-16T20:04:52.924403",
+    "response_data": null
+  },
+  {
+    "test": "获取用户预约",
+    "status": "PASS",
+    "message": "预约记录获取成功",
+    "timestamp": "2025-11-16T20:04:52.930404",
+    "response_data": null
+  },
+  {
+    "test": "创建预约",
+    "status": "PASS",
+    "message": "预约创建成功",
+    "timestamp": "2025-11-16T20:04:53.031402",
+    "response_data": null
+  },
+  {
+    "test": "获取预约列表",
+    "status": "PASS",
+    "message": "预约列表获取成功",
+    "timestamp": "2025-11-16T20:04:53.042403",
+    "response_data": null
+  }
+]

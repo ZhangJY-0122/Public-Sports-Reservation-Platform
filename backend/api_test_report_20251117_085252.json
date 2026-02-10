@@ -1,0 +1,433 @@
+[
+  {
+    "test_name": "健康检查",
+    "success": true,
+    "timestamp": "2025-11-17T08:52:51.262659",
+    "response": {
+      "message": "服务运行正常",
+      "status": "healthy",
+      "timestamp": "2025-11-17T08:52:51.261660"
+    },
+    "error": null
+  },
+  {
+    "test_name": "系统信息",
+    "success": true,
+    "timestamp": "2025-11-17T08:52:51.293124",
+    "response": {
+      "code": 0,
+      "data": {
+        "api": {
+          "status": "running",
+          "version": "1.0"
+        },
+        "database": {
+          "connected": true,
+          "type": "SQLAlchemy"
+        },
+        "system": {
+          "framework": "Flask",
+          "platform": "Windows-10-10.0.19045-SP0",
+          "python_version": "3.11.7 | packaged by Anaconda, Inc. | (main, Dec 15 2023, 18:05:47) [MSC v.1916 64 bit (AMD64)]"
+        }
+      },
+      "message": "获取成功"
+    },
+    "error": null
+  },
+  {
+    "test_name": "首页接口",
+    "success": true,
+    "timestamp": "2025-11-17T08:52:51.298122",
+    "response": {
+      "docs": "/api/docs/",
+      "endpoints": {
+        "activity": "/api/activity/",
+        "auth": "/api/auth/",
+        "booking": "/api/booking/",
+        "coach": "/api/coach/",
+        "user": "/api/user/",
+        "venue": "/api/venue/"
+      },
+      "message": "体育预约系统API服务",
+      "status": "running",
+      "version": "1.0"
+    },
+    "error": null
+  },
+  {
+    "test_name": "API文档",
+    "success": true,
+    "timestamp": "2025-11-17T08:52:51.347764",
+    "response": "<!DOCTYPE html>\n<html>\n<head>\n    <title>体育预约系统API</title>\n    \n<link media=\"screen\" rel=\"stylesheet\" type=\"text/css\" href=\"/swaggerui/droid-sans.css\" />\n<link media=\"screen\" rel=\"stylesheet\" type=\"text/css\" href=\"/swaggerui/swagger-ui.css\" />\n<style>\nhtml\n{\n  box-sizing: border-box;\n  overflow: -moz-scrollbars-vertical;\n  overflow-y: scroll;\n}\n*,\n*:before,\n*:after\n{\n  box-sizing: inherit;\n}\n\nbody {\n  margin:0;\n  background: #fafafa;\n}\n</style>\n\n    <link rel=\"icon\" type=\"image/png\" href=\"/swaggerui/favicon-32x32.png\" sizes=\"32x32\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/swaggerui/favicon-16x16.png\" sizes=\"16x16\" />\n\n</head>\n\n<body>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" style=\"position:absolute;width:0;height:0\">\n      <defs>\n        <symbol viewBox=\"0 0 20 20\" id=\"unlocked\">\n              <path d=\"M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z\"></path>\n        </symbol>\n\n        <symbol viewBox=\"0 0 20 20\" id=\"locked\">\n          <path d=\"M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z\"/>\n        </symbol>\n\n        <symbol viewBox=\"0 0 20 20\" id=\"close\">\n          <path d=\"M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z\"/>\n        </symbol>\n\n        <symbol viewBox=\"0 0 20 20\" id=\"large-arrow\">\n          <path d=\"M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z\"/>\n        </symbol>\n\n        <symbol viewBox=\"0 0 20 20\" id=\"large-arrow-down\">\n          <path d=\"M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z\"/>\n        </symbol>\n\n\n        <symbol viewBox=\"0 0 24 24\" id=\"jump-to\">\n          <path d=\"M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z\"/>\n        </symbol>\n\n        <symbol viewBox=\"0 0 24 24\" id=\"expand\">\n          <path d=\"M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z\"/>\n        </symbol>\n\n      </defs>\n    </svg>\n\n    <div id=\"swagger-ui\"></div>\n\n    \n<script src=\"/swaggerui/swagger-ui-bundle.js\"></script>\n<script src=\"/swaggerui/swagger-ui-standalone-preset.js\"></script>\n    <script type=\"text/javascript\">\n        window.onload = function() {\n            const ui = window.ui = new SwaggerUIBundle({\n                url: \"/api/swagger.json\",\n                \n                validatorUrl: \"\" || null,\n                dom_id: \"#swagger-ui\",\n                presets: [\n                    SwaggerUIBundle.presets.apis,\n                    SwaggerUIStandalonePreset.slice(1) // No Topbar\n                ],\n                plugins: [\n                    SwaggerUIBundle.plugins.DownloadUrl\n                ],\n                \n                displayOperationId: false,\n                displayRequestDuration: false,\n                docExpansion: \"none\"\n            })\n\n            \n        }\n    </script>\n</body>\n</html>",
+    "error": null
+  },
+  {
+    "test_name": "用户登录",
+    "success": true,
+    "timestamp": "2025-11-17T08:52:52.032009",
+    "response": {
+      "code": 0,
+      "data": {
+        "email": "admin@example.com",
+        "token": "user_1",
+        "user_id": 1,
+        "username": "admin"
+      },
+      "message": "登录成功"
+    },
+    "error": null
+  },
+  {
+    "test_name": "用户信息",
+    "success": false,
+    "timestamp": "2025-11-17T08:52:52.036008",
+    "response": {
+      "code": 401,
+      "data": null,
+      "message": "用户身份验证失败"
+    },
+    "error": null
+  },
+  {
+    "test_name": "场馆分类",
+    "success": true,
+    "timestamp": "2025-11-17T08:52:52.045008",
+    "response": {
+      "code": 0,
+      "data": [
+        {
+          "description": "室内外篮球场地",
+          "icon": null,
+          "id": 1,
+          "is_active": true,
+          "name": "篮球",
+          "sort_order": 0
+        },
+        {
+          "description": "足球场地",
+          "icon": null,
+          "id": 2,
+          "is_active": true,
+          "name": "足球",
+          "sort_order": 0
+        },
+        {
+          "description": "羽毛球场地",
+          "icon": null,
+          "id": 3,
+          "is_active": true,
+          "name": "羽毛球",
+          "sort_order": 0
+        },
+        {
+          "description": "网球场",
+          "icon": null,
+          "id": 4,
+          "is_active": true,
+          "name": "网球",
+          "sort_order": 0
+        },
+        {
+          "description": "游泳池",
+          "icon": null,
+          "id": 5,
+          "is_active": true,
+          "name": "游泳",
+          "sort_order": 0
+        },
+        {
+          "description": "健身房",
+          "icon": null,
+          "id": 6,
+          "is_active": true,
+          "name": "健身",
+          "sort_order": 0
+        },
+        {
+          "description": "乒乓球桌",
+          "icon": null,
+          "id": 7,
+          "is_active": true,
+          "name": "乒乓球",
+          "sort_order": 0
+        },
+        {
+          "description": "排球场地",
+          "icon": null,
+          "id": 8,
+          "is_active": true,
+          "name": "排球",
+          "sort_order": 0
+        }
+      ],
+      "message": "获取成功"
+    },
+    "error": null
+  },
+  {
+    "test_name": "场馆列表",
+    "success": true,
+    "timestamp": "2025-11-17T08:52:52.066009",
+    "response": {
+      "code": 0,
+      "data": {
+        "pagination": {
+          "current_page": 1,
+          "page_size": 20,
+          "total": 5,
+          "total_pages": 1
+        },
+        "venues": [
+          {
+            "business_hours": null,
+            "capacity": 1,
+            "category": {
+              "description": "室内外篮球场地",
+              "icon": null,
+              "id": 1,
+              "is_active": true,
+              "name": "篮球",
+              "sort_order": 0
+            },
+            "contact_phone": "13800138000",
+            "created_at": "2025-11-17T00:32:17",
+            "description": "综合性体育场馆",
+            "facilities": null,
+            "id": 1,
+            "image": null,
+            "is_active": true,
+            "location": "市中心",
+            "name": "中央体育馆",
+            "price": "100.00",
+            "type": "室内"
+          },
+          {
+            "business_hours": null,
+            "capacity": 1,
+            "category": {
+              "description": "足球场地",
+              "icon": null,
+              "id": 2,
+              "is_active": true,
+              "name": "足球",
+              "sort_order": 0
+            },
+            "contact_phone": "13800138000",
+            "created_at": "2025-11-17T00:32:17",
+            "description": "标准足球场地",
+            "facilities": null,
+            "id": 2,
+            "image": null,
+            "is_active": true,
+            "location": "郊区",
+            "name": "绿色足球场",
+            "price": "80.00",
+            "type": "室外"
+          },
+          {
+            "business_hours": null,
+            "capacity": 1,
+            "category": {
+              "description": "羽毛球场地",
+              "icon": null,
+              "id": 3,
+              "is_active": true,
+              "name": "羽毛球",
+              "sort_order": 0
+            },
+            "contact_phone": "13800138000",
+            "created_at": "2025-11-17T00:32:17",
+            "description": "专业羽毛球场地",
+            "facilities": null,
+            "id": 3,
+            "image": null,
+            "is_active": true,
+            "location": "商业区",
+            "name": "飞翔羽毛球馆",
+            "price": "60.00",
+            "type": "室内"
+          },
+          {
+            "business_hours": null,
+            "capacity": 1,
+            "category": {
+              "description": "网球场",
+              "icon": null,
+              "id": 4,
+              "is_active": true,
+              "name": "网球",
+              "sort_order": 0
+            },
+            "contact_phone": "13800138000",
+            "created_at": "2025-11-17T00:32:17",
+            "description": "室外网球场",
+            "facilities": null,
+            "id": 4,
+            "image": null,
+            "is_active": true,
+            "location": "公园内",
+            "name": "阳光网球场",
+            "price": "70.00",
+            "type": "室外"
+          },
+          {
+            "business_hours": null,
+            "capacity": 1,
+            "category": {
+              "description": "游泳池",
+              "icon": null,
+              "id": 5,
+              "is_active": true,
+              "name": "游泳",
+              "sort_order": 0
+            },
+            "contact_phone": "13800138000",
+            "created_at": "2025-11-17T00:32:17",
+            "description": "标准游泳池",
+            "facilities": null,
+            "id": 5,
+            "image": null,
+            "is_active": true,
+            "location": "体育中心",
+            "name": "蓝色游泳馆",
+            "price": "120.00",
+            "type": "室内"
+          }
+        ]
+      },
+      "message": "获取成功"
+    },
+    "error": null
+  },
+  {
+    "test_name": "活动列表",
+    "success": true,
+    "timestamp": "2025-11-17T08:52:52.081007",
+    "response": {
+      "code": 0,
+      "data": {
+        "activities": [
+          {
+            "activity_type": "basketball",
+            "created_at": "2025-11-17T00:32:37",
+            "current_participants": 0,
+            "description": "友谊篮球比赛",
+            "end_date": "2025-11-24",
+            "end_time": "11:00",
+            "id": 1,
+            "image": null,
+            "location": "中央体育馆",
+            "max_participants": 20,
+            "organizer": "admin",
+            "start_date": "2025-11-24",
+            "start_time": "09:00",
+            "status": "upcoming",
+            "title": "周末篮球赛"
+          },
+          {
+            "activity_type": "badminton",
+            "created_at": "2025-11-17T00:32:37",
+            "current_participants": 0,
+            "description": "专业羽毛球训练",
+            "end_date": "2025-11-24",
+            "end_time": "11:00",
+            "id": 2,
+            "image": null,
+            "location": "飞翔羽毛球馆",
+            "max_participants": 20,
+            "organizer": "admin",
+            "start_date": "2025-11-24",
+            "start_time": "09:00",
+            "status": "upcoming",
+            "title": "羽毛球训练营"
+          },
+          {
+            "activity_type": "swimming",
+            "created_at": "2025-11-17T00:32:37",
+            "current_participants": 0,
+            "description": "游泳技能培训",
+            "end_date": "2025-11-24",
+            "end_time": "11:00",
+            "id": 3,
+            "image": null,
+            "location": "蓝色游泳馆",
+            "max_participants": 20,
+            "organizer": "admin",
+            "start_date": "2025-11-24",
+            "start_time": "09:00",
+            "status": "upcoming",
+            "title": "游泳健身班"
+          }
+        ],
+        "pagination": {
+          "current_page": 1,
+          "page_size": 20,
+          "total": 3,
+          "total_pages": 1
+        }
+      },
+      "message": "获取成功"
+    },
+    "error": null
+  },
+  {
+    "test_name": "教练列表",
+    "success": true,
+    "timestamp": "2025-11-17T08:52:52.092011",
+    "response": {
+      "code": 0,
+      "data": {
+        "coaches": [
+          {
+            "avatar": null,
+            "experience_years": 5,
+            "hourly_rate": "200.00",
+            "id": 1,
+            "introduction": "专业体育教练，擅长教学。",
+            "is_active": true,
+            "name": "张教练",
+            "phone": "13800000001",
+            "rating": "5.00",
+            "specialization": "篮球",
+            "total_sessions": 0
+          },
+          {
+            "avatar": null,
+            "experience_years": 3,
+            "hourly_rate": "200.00",
+            "id": 2,
+            "introduction": "专业体育教练，擅长教学。",
+            "is_active": true,
+            "name": "李教练",
+            "phone": "13800000002",
+            "rating": "5.00",
+            "specialization": "羽毛球",
+            "total_sessions": 0
+          },
+          {
+            "avatar": null,
+            "experience_years": 8,
+            "hourly_rate": "200.00",
+            "id": 3,
+            "introduction": "专业体育教练，擅长教学。",
+            "is_active": true,
+            "name": "王教练",
+            "phone": "13800000003",
+            "rating": "5.00",
+            "specialization": "游泳",
+            "total_sessions": 0
+          }
+        ],
+        "pagination": {
+          "current_page": 1,
+          "page_size": 20,
+          "total": 3,
+          "total_pages": 1
+        }
+      },
+      "message": "获取成功"
+    },
+    "error": null
+  }
+]

@@ -1,0 +1,155 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path": "pages/venue/venue",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/cgbookin/cgbookin",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+	
+		{
+			"path": "pages/my/activities",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/my/bookin",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/my/events"
+		},
+		{
+			"path": "pages/my/fee"
+		},
+		{
+			"path": "pages/my/coach",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/auth/login",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/auth/register",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/cgbookin/facbookin"
+		},
+		{
+			"path": "pages/my/friends"
+		},
+		{
+			"path": "pages/coach/coach",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/coach/coach_list",
+			"style": {
+				"navigationBarTitleText": "教练列表"
+			}
+		},
+		{
+			"path": "pages/coach/coach_detail",
+			"style": {
+				"navigationBarTitleText": "教练详情"
+			}
+		},
+		{
+			"path": "pages/coach/coach_booking",
+			"style": {
+				"navigationBarTitleText": "预约教练"
+			}
+		},
+		{
+			"path": "pages/coach/coach_payment",
+			"style": {
+				"navigationBarTitleText": "确认支付"
+			}
+		},
+		{
+			"path": "pages/activity/activity",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/cgbookin/booking"
+			
+		},
+		{
+			"path":"pages/event/event"
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"color": "#666",
+		"selectedColor": "#ff6034",
+		"backgroundColor": "#ffffff",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/navtabs/home.png",
+				"selectedIconPath": "static/navtabs/home-select.png"
+			},
+			{
+				"pagePath": "pages/venue/venue",
+				"text": "场馆",
+				"iconPath": "static/navtabs/cg.png",
+				"selectedIconPath": "static/navtabs/cg-select.png"
+			},
+			{
+				"pagePath": "pages/coach/coach_list",
+				"text": "教练",
+				"iconPath": "static/navtabs/teach.png",
+				"selectedIconPath": "static/navtabs/teach-select.png"
+			},
+			{
+				"pagePath": "pages/my/my",
+				"text": "我的",
+				"iconPath": "static/navtabs/my.png",
+				"selectedIconPath": "static/navtabs/my-select.png"
+			}
+		]
+	}
+}

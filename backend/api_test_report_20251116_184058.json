@@ -1,0 +1,119 @@
+[
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 5.45,
+    "success": true,
+    "details": "体育预约系统API服务"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/health",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 4.99,
+    "success": true,
+    "details": "服务运行正常"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/api/system/info",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 21.0,
+    "success": true,
+    "details": "API版本: 1.0"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/auth/register",
+    "method": "POST",
+    "status_code": 500,
+    "response_time_ms": 42.29,
+    "success": false,
+    "details": "注册失败: (sqlite3.OperationalError) no such table: users\n[SQL: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.phone AS users_phone, users.password_hash AS users_password_hash, users.real_name AS users_real_name, users.avatar AS users_avatar, users.city AS users_city, users.role AS users_role, users.exercise_days AS users_exercise_days, users.friends_count AS users_friends_count, users.points AS users_points, users.vip_level AS users_vip_level, users.created_at AS users_created_at, users.updated_at AS users_updated_at, users.last_login_at AS users_last_login_at \nFROM users \nWHERE users.username = ?\n LIMIT ? OFFSET ?]\n[parameters: ('testuser_1763289658', 1, 0)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/venue/categories",
+    "method": "GET",
+    "status_code": 500,
+    "response_time_ms": 7.0,
+    "success": false,
+    "details": "获取分类失败: (sqlite3.OperationalError) no such table: venue_categories\n[SQL: SELECT venue_categories.id AS venue_categories_id, venue_categories.name AS venue_categories_name, venue_categories.icon AS venue_categories_icon, venue_categories.description AS venue_categories_description, venue_categories.sort_order AS venue_categories_sort_order, venue_categories.is_active AS venue_categories_is_active, venue_categories.created_at AS venue_categories_created_at \nFROM venue_categories \nWHERE venue_categories.is_active = 1 ORDER BY venue_categories.sort_order ASC, venue_categories.id ASC]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/venue/list",
+    "method": "GET",
+    "status_code": 500,
+    "response_time_ms": 14.0,
+    "success": false,
+    "details": "获取场馆列表失败: (sqlite3.OperationalError) no such table: venues\n[SQL: SELECT count(*) AS count_1 \nFROM (SELECT venues.id AS venues_id, venues.name AS venues_name, venues.type AS venues_type, venues.location AS venues_location, venues.description AS venues_description, venues.image AS venues_image, venues.price_per_hour AS venues_price_per_hour, venues.capacity AS venues_capacity, venues.facilities AS venues_facilities, venues.contact_phone AS venues_contact_phone, venues.business_hours AS venues_business_hours, venues.is_active AS venues_is_active, venues.category_id AS venues_category_id, venues.created_at AS venues_created_at, venues.updated_at AS venues_updated_at \nFROM venues \nWHERE venues.is_active = 1) AS anon_1]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/venue/search?keyword=篮球",
+    "method": "GET",
+    "status_code": 400,
+    "response_time_ms": 5.0,
+    "success": false,
+    "details": "搜索关键词不能为空"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/booking/create",
+    "method": "POST",
+    "status_code": 401,
+    "response_time_ms": 5.0,
+    "success": false,
+    "details": "用户身份验证失败"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/booking/list",
+    "method": "GET",
+    "status_code": 404,
+    "response_time_ms": 5.0,
+    "success": false,
+    "details": "资源不存在"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/user/profile",
+    "method": "GET",
+    "status_code": 401,
+    "response_time_ms": 4.0,
+    "success": false,
+    "details": "用户身份验证失败"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/user/dashboard",
+    "method": "GET",
+    "status_code": 401,
+    "response_time_ms": 4.01,
+    "success": false,
+    "details": "用户身份验证失败"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/api/swagger.json",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 5.0,
+    "success": true,
+    "details": "API文档，包含 0 个接口"
+  },
+  {
+    "timestamp": "2025-11-16 18:40:58",
+    "endpoint": "/api/docs/",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 20.0,
+    "success": true,
+    "details": "Swagger UI 页面可访问"
+  }
+]

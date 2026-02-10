@@ -1,0 +1,65 @@
+[
+  {
+    "test_name": "健康检查",
+    "success": false,
+    "timestamp": "2025-11-17T08:43:37.929173",
+    "response": "HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000244A7DA10D0>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))",
+    "error": null
+  },
+  {
+    "test_name": "系统信息",
+    "success": false,
+    "timestamp": "2025-11-17T08:43:39.978697",
+    "response": "HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/system/info (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000244A7DA28D0>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))",
+    "error": null
+  },
+  {
+    "test_name": "首页接口",
+    "success": false,
+    "timestamp": "2025-11-17T08:43:42.013788",
+    "response": "HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000244A7DB4210>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))",
+    "error": null
+  },
+  {
+    "test_name": "API文档",
+    "success": false,
+    "timestamp": "2025-11-17T08:43:44.038748",
+    "response": "HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/docs/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000244A7DB5950>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))",
+    "error": null
+  },
+  {
+    "test_name": "用户登录",
+    "success": false,
+    "timestamp": "2025-11-17T08:43:46.087138",
+    "response": "HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/auth/login (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000244A7DB6FD0>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))",
+    "error": null
+  },
+  {
+    "test_name": "场馆分类",
+    "success": false,
+    "timestamp": "2025-11-17T08:43:48.115820",
+    "response": "HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/venue/categories (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000244A7DC0510>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))",
+    "error": null
+  },
+  {
+    "test_name": "场馆列表",
+    "success": false,
+    "timestamp": "2025-11-17T08:43:50.132134",
+    "response": "HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/venue/list (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000244A7DC1A10>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))",
+    "error": null
+  },
+  {
+    "test_name": "活动列表",
+    "success": false,
+    "timestamp": "2025-11-17T08:43:52.170243",
+    "response": "HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/activity/list (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000244A7DC2ED0>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))",
+    "error": null
+  },
+  {
+    "test_name": "教练列表",
+    "success": false,
+    "timestamp": "2025-11-17T08:43:54.192923",
+    "response": "HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /api/coach/list (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000244A7DD4450>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))",
+    "error": null
+  }
+]

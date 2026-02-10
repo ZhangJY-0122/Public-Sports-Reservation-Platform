@@ -1,0 +1,119 @@
+[
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 6.0,
+    "success": true,
+    "details": "体育预约系统API服务"
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/health",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 5.0,
+    "success": true,
+    "details": "服务运行正常"
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/api/system/info",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 5.0,
+    "success": true,
+    "details": "API版本: 1.0"
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/auth/register",
+    "method": "POST",
+    "status_code": 500,
+    "response_time_ms": 14.19,
+    "success": false,
+    "details": "注册失败: Could not determine join condition between parent/child tables on relationship User.friendships - there are multiple foreign key paths linking the tables.  Specify the 'foreign_keys' argument, providing a list of those columns which should be counted as containing a foreign key reference to the parent table."
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/venue/categories",
+    "method": "GET",
+    "status_code": 500,
+    "response_time_ms": 4.0,
+    "success": false,
+    "details": "获取分类失败: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[User(users)]'. Original exception was: Could not determine join condition between parent/child tables on relationship User.friendships - there are multiple foreign key paths linking the tables.  Specify the 'foreign_keys' argument, providing a list of those columns which should be counted as containing a foreign key reference to the parent table."
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/venue/list",
+    "method": "GET",
+    "status_code": 500,
+    "response_time_ms": 7.0,
+    "success": false,
+    "details": "获取场馆列表失败: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[User(users)]'. Original exception was: Could not determine join condition between parent/child tables on relationship User.friendships - there are multiple foreign key paths linking the tables.  Specify the 'foreign_keys' argument, providing a list of those columns which should be counted as containing a foreign key reference to the parent table."
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/venue/search?keyword=篮球",
+    "method": "GET",
+    "status_code": 404,
+    "response_time_ms": 7.0,
+    "success": false,
+    "details": "资源不存在"
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/booking/create",
+    "method": "POST",
+    "status_code": 401,
+    "response_time_ms": 5.0,
+    "success": false,
+    "details": "用户身份验证失败"
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/booking/list",
+    "method": "GET",
+    "status_code": 404,
+    "response_time_ms": 7.0,
+    "success": false,
+    "details": "资源不存在"
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/user/profile",
+    "method": "GET",
+    "status_code": 401,
+    "response_time_ms": 5.0,
+    "success": false,
+    "details": "用户身份验证失败"
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/user/dashboard",
+    "method": "GET",
+    "status_code": 401,
+    "response_time_ms": 5.0,
+    "success": false,
+    "details": "用户身份验证失败"
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/api/swagger.json",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 6.0,
+    "success": true,
+    "details": "API文档，包含 0 个接口"
+  },
+  {
+    "timestamp": "2025-11-16 18:39:16",
+    "endpoint": "/api/docs/",
+    "method": "GET",
+    "status_code": 200,
+    "response_time_ms": 8.0,
+    "success": true,
+    "details": "Swagger UI 页面可访问"
+  }
+]

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>场馆预约 - 朋友选择功能</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .venue-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .venue-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .venue-info {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .date-input, .time-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .cost-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .cost-label {
+            color: #666;
+        }
+
+        .split-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            width: 50px;
+            height: 26px;
+            background: #ccc;
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle-switch.active {
+            background: #667eea;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(24px);
+        }
+
+        .friends-section {
+            margin-top: 20px;
+        }
+
+        .friends-section.hidden {
+            display: none;
+        }
+
+        .friends-count {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .friends-list {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .friend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .friend-item.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .friend-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .friend-name {
+            font-size: 13px;
+            color: #333;
+        }
+
+        .friend-status {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .confirm-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .notes-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            margin-top: 20px;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .demo-notice {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #1976d2;
+            font-size: 14px;
+        }
+
+        .highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <h1>🏟️ 预约场馆</h1>
+        </div>
+
+        <div class="content">
+            <div class="demo-notice">
+                ✨ <span class="highlight">新功能演示</span>：点击费用分摊开关后，会显示朋友列表供您选择。选择的朋友数量必须与分摊人数保持一致。
+            </div>
+
+            <div class="venue-card">
+                <div class="venue-name">🏃‍♂️ 健身中心A</div>
+                <div class="venue-info">📍 位于市中心的专业健身场所</div>
+            </div>
+
+            <div class="section-title">⏰ 选择时间</div>
+            <div class="time-selector">
+                <input type="date" class="date-input" id="dateInput" value="2025-11-18">
+                <input type="time" class="time-input" id="timeInput" value="19:00">
+            </div>
+
+            <div class="cost-section">
+                <div class="cost-row">
+                    <span class="cost-label">💰 总费用</span>
+                    <span>¥<span id="totalCost">120</span></span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">👥 分摊人数</span>
+                    <span id="splitCount">1</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">💸 每人费用</span>
+                    <span>¥<span id="perPersonCost">120</span></span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">费用分摊</span>
+                    <div class="split-toggle">
+                        <div class="toggle-switch" id="splitToggle" onclick="toggleSplit()"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="friends-section hidden" id="friendsSection">
+                <div class="section-title">
+                    👥 选择朋友 <span class="friends-count">已选择 <span id="selectedCount">0</span>/<span id="requiredCount">2</span>人</span>
+                </div>
+                <div class="friends-list" id="friendsList">
+                    <!-- 朋友列表将通过JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <textarea class="notes-input" placeholder="💬 添加备注信息..."></textarea>
+
+            <button class="confirm-btn" id="confirmBtn" disabled onclick="confirmBooking()">
+                确认预约
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 数据状态
+        let splitCount = 1;
+        let selectedFriends = [];
+        let friends = [
+            {id: 1, name: '张三', avatar: '张', status: '在线'},
+            {id: 2, name: '李四', avatar: '李', status: '在线'},
+            {id: 3, name: '王五', avatar: '王', status: '忙碌'},
+            {id: 4, name: '赵六', avatar: '赵', status: '离线'},
+            {id: 5, name: '钱七', avatar: '钱', status: '在线'},
+            {id: 6, name: '孙八', avatar: '孙', status: '在线'}
+        ];
+
+        // 切换费用分摊
+        function toggleSplit() {
+            const toggle = document.getElementById('splitToggle');
+            const friendsSection = document.getElementById('friendsSection');
+            
+            toggle.classList.toggle('active');
+            const isActive = toggle.classList.contains('active');
+            
+            if (isActive) {
+                splitCount = 2;
+                friendsSection.classList.remove('hidden');
+                document.getElementById('friendsList').innerHTML = generateFriendsList();
+            } else {
+                splitCount = 1;
+                friendsSection.classList.add('hidden');
+                selectedFriends = [];
+            }
+            
+            updateSplitInfo();
+            updateConfirmButton();
+        }
+
+        // 生成朋友列表
+        function generateFriendsList() {
+            return friends.map(friend => `
+                <div class="friend-item" onclick="toggleFriend(${friend.id})" id="friend-${friend.id}">
+                    <div class="friend-avatar">${friend.avatar}</div>
+                    <div>
+                        <div class="friend-name">${friend.name}</div>
+                        <div class="friend-status">${friend.status}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 切换朋友选择
+        function toggleFriend(friendId) {
+            const friendElement = document.getElementById(`friend-${friendId}`);
+            const friend = friends.find(f => f.id === friendId);
+            
+            if (friendElement.classList.contains('selected')) {
+                // 取消选择
+                friendElement.classList.remove('selected');
+                selectedFriends = selectedFriends.filter(id => id !== friendId);
+            } else {
+                // 检查是否达到上限
+                if (selectedFriends.length >= splitCount - 1) {
+                    alert(`最多只能选择 ${splitCount - 1} 个朋友分摊费用！`);
+                    return;
+                }
+                
+                // 添加选择
+                friendElement.classList.add('selected');
+                selectedFriends.push(friendId);
+            }
+            
+            updateSplitInfo();
+            updateConfirmButton();
+        }
+
+        // 更新分摊信息
+        function updateSplitInfo() {
+            document.getElementById('splitCount').textContent = splitCount;
+            document.getElementById('totalCost').textContent = 120;
+            document.getElementById('perPersonCost').textContent = (120 / splitCount).toFixed(0);
+            document.getElementById('selectedCount').textContent = selectedFriends.length;
+            document.getElementById('requiredCount').textContent = splitCount - 1;
+        }
+
+        // 更新确认按钮状态
+        function updateConfirmButton() {
+            const btn = document.getElementById('confirmBtn');
+            const isSplitActive = document.getElementById('splitToggle').classList.contains('active');
+            
+            if (isSplitActive) {
+                btn.disabled = selectedFriends.length !== (splitCount - 1);
+                btn.textContent = btn.disabled ? `确认预约 (还需选择 ${(splitCount - 1) - selectedFriends.length} 人)` : '确认预约';
+            } else {
+                btn.disabled = false;
+                btn.textContent = '确认预约';
+            }
+        }
+
+        // 确认预约
+        function confirmBooking() {
+            const isSplitActive = document.getElementById('splitToggle').classList.contains('active');
+            let message = '预约信息：\n';
+            message += `场馆：健身中心A\n`;
+            message += `时间：${document.getElementById('dateInput').value} ${document.getElementById('timeInput').value}\n`;
+            message += `费用：¥${document.getElementById('totalCost').textContent}\n`;
+            
+            if (isSplitActive) {
+                const selectedNames = selectedFriends.map(id => {
+                    const friend = friends.find(f => f.id === id);
+                    return friend ? friend.name : '';
+                }).filter(name => name);
+                
+                message += `分摊人数：${splitCount}人\n`;
+                message += `分摊朋友：${selectedNames.join('、')}\n`;
+                message += `每人费用：¥${document.getElementById('perPersonCost').textContent}`;
+            }
+            
+            alert(message + '\n\n预约成功！');
+        }
+
+        // 返回上一页
+        function goBack() {
+            alert('返回上一页');
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSplitInfo();
+        });
+    </script>
+</body>
+</html>
